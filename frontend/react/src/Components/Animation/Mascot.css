@@ -1,6 +1,6 @@
-.background-overlay {
+.mascot-overlay {
     position: absolute;
-    top: 150px;
-    left:25px;
+    top: 110px;
+    left: 160px;
     pointer-events: none;
   }
