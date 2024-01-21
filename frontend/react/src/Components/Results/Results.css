@@ -1,0 +1,39 @@
+.success-box {
+    width: 420px;
+    text-align: center;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(50px);
+    color: #222831;
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    margin-bottom: 175px;
+}
+
+.success-box button {
+    width: 8    0%;
+    height: 45px;
+    background: #222831;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #f2f2f2;
+    font-weight: 700;
+    margin: 10px 0px 10px 0px;
+  }
+
+.sucesss-buttons {
+    text-align: center;
+      display: flex;
+      justify-content: space-between; /* Adjust the alignment as needed */
+      max-width: 1000px;
+  }
+  
+  .success-buttons button {
+    flex: 1; /* This will make all buttons take an equal portion of the available space */
+    max-width: 200px; /* Optional: Set a maximum width to prevent excessive stretching */
+  }

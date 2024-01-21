@@ -3,21 +3,39 @@ import "./Results.css";
 import { Link } from "react-router-dom";
 import BackgroundOverlay from "./Animation/BackgroundOverlay";
 import Mascot from "./Animation/Mascot";
+import { Checkmark } from "react-checkmark";
 
 const Results = () => {
   return (
     <div>
-    <BackgroundOverlay />
+      <BackgroundOverlay />
       <Mascot />
-    <div className="landing-container">
-      <h1 className="landing-header">TimeCapsules</h1>
-      <div className="landing-body">
-      Take your capsules on time. Using Computer Vision and AI to innovate how we take medication.
+      <div className="success-box">
+        <Checkmark size="100px" color="#EA8A8A" />
+        <h1>Success!</h1>
+        <div>
+          Your TimeCapsule was successfully created and the medication has been
+          added to your phone number. Please ensure text notifications are on.
+        </div>
+        <div className="sucess-buttons">
+        <button>
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            to="/webcam"
+          >
+            Add another medication
+          </Link>
+        </button>
+        <button>
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            to="/"
+          >
+            Home
+          </Link>
+        </button>
+        </div>
       </div>
-      <Link to="/LoginForm">
-        <button type="submit">Start</button>
-      </Link>
-    </div>
     </div>
   );
 };
