@@ -34,10 +34,6 @@ def receive_data():
 
 
 # reads image (change to patch your path file)
-<<<<<<< HEAD
-def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
-    # CHANGE ACCORDING TO USER
-=======
 def imageRead(responseJson): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
 
     age = responseJson['age']
@@ -49,8 +45,7 @@ def imageRead(responseJson): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone 
     personName = responseJson['name']
     phoneNumber = responseJson['phoneNumber']
 
->>>>>>> 883b5480b892152825dcab18b4f9bddf26abcf0a
-    image_path = '/Users/marcuskam/Desktop/nw/timecapsules/images/vitamin.png' 
+    image_path = '/Users/jasonkuo/Desktop/timecapsules/images/vitamin.png' 
 
     img = cv2.imread(image_path)
 
