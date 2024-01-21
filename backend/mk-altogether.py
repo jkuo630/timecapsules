@@ -33,6 +33,7 @@ def receive_data():
 
 # reads image (change to patch your path file)
 def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
+    # CHANGE ACCORDING TO USER
     image_path = '/Users/marcuskam/Desktop/nw/timecapsules/images/vitamin.png' 
 
     img = cv2.imread(image_path)

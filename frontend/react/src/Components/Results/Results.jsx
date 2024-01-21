@@ -1,11 +1,14 @@
 import React from "react";
 import "./Results.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BackgroundOverlay from "./Animation/BackgroundOverlay";
 import Mascot from "./Animation/Mascot";
 import { Checkmark } from "react-checkmark";
 
-const Results = () => {
+const Results = (props) => {
+  const { state } = useLocation();
+  const { hello } = state;
+
   return (
     <div>
       <BackgroundOverlay />
@@ -17,23 +20,21 @@ const Results = () => {
           Your TimeCapsule was successfully created and the medication has been
           added to your phone number. Please ensure text notifications are on.
         </div>
+        <p>{hello}</p>
         <div className="sucess-buttons">
-        <button>
-          <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to="/webcam"
-          >
-            Add another medication
-          </Link>
-        </button>
-        <button>
-          <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to="/"
-          >
-            Home
-          </Link>
-        </button>
+          <button>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/webcam"
+            >
+              Add another medication
+            </Link>
+          </button>
+          <button>
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
+              Home
+            </Link>
+          </button>
         </div>
       </div>
     </div>

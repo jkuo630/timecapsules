@@ -31,37 +31,42 @@ const Camera = () => {
 
   return (
     <div>
-          <BackgroundOverlay />
+      <BackgroundOverlay />
       <Mascot />
-    <div className="photo-container">
-      <h1>Take a photo of the label</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter name of medication"
-        className="inputStyle"
-      />
-      <div  className="webcam">
-      <Webcam
-        ref={webcamRef}
-        audio={false}
-        screenshotFormat="image/webp" // Set the screenshot format to image/webp
-        videoConstraints={videoConstraints}
-        mirrored={false}
-      />
+      <div className="photo-container">
+        <h1>Take a photo of the label</h1>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="Enter name of medication"
+          className="inputStyle"
+        />
+        <div className="webcam">
+          <Webcam
+            ref={webcamRef}
+            audio={false}
+            screenshotFormat="image/webp" // Set the screenshot format to image/webp
+            videoConstraints={videoConstraints}
+            mirrored={false}
+          />
+        </div>
+        <div className="photo-buttons">
+          <button onClick={capturePhoto}>Capture</button>
+          <button onClick={retakePhoto}>Retake</button>
+
+          <button>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/Results"
+              state={{ hello: inputValue + " has been added!" }}
+            >
+              Submit
+            </Link>
+          </button>
+        </div>
+        {capturedImage && <img src={capturedImage} alt="Captured Screenshot" />}
       </div>
-      <div className="photo-buttons">
-      <button onClick={capturePhoto}>Capture</button>
-      <button onClick={retakePhoto}>Retake</button>
-      
-        <button>
-          <Link style={{textDecoration:'none', color: 'inherit' }} to="/Results">Submit
-         </Link>
-         </button>
-      </div>
-      {capturedImage && <img src={capturedImage} alt="Captured Screenshot" />}
-    </div>
     </div>
   );
 };
