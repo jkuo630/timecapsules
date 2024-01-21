@@ -17,7 +17,7 @@ sleepen = 20
 given_time = time(woken,0) #maybe woken.hour, woken.minutes( depends on input object format)
 perDay = 2
   #PASS JASONS RESULT INTO THIS
-instruction = "Take 1 tablet of Hydrocodene every twice per day"
+instruction = "Tat Directions: Adults and children 4 years old over; chew 2 gummies 1 time per Take and with food, a few hours before or after other medications or natural health products day: taking"
 
 def jasper(age, woken, sleepen, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
     dateNow = datetime.utcnow().date()
