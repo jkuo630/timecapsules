@@ -1,14 +1,14 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime, time
 
-load_dotenv()
+# load_dotenv()
 
 client = OpenAI(
     # This is the default and can be omitted
-
-    api_key = os.environ['API_KEY']
+    api_key="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"
+    # api_key = os.environ['API_KEY']
 )
 
 age = 23
@@ -24,7 +24,7 @@ def jasper(age, woken, sleepen, given_time, perDay, instruction): #intake instru
     combinedDate = datetime.combine(dateNow, given_time).strftime('%Y-%m-%dT%H:%M:%SZ')
 
     intervalContext = [
-        {"role": "system", "content": "You will be provided with instructions for medicine that I am to take. Return the interval at which the medication should be taken in terms of hours. For example, 'daily' means every 24 hours. Only return the number of hours as an integer, nothing else."},
+        {"role": "system", "content": "You are an assistant who can only reply in numbers. You will be provided with instructions for medicine that I am to take. Return the interval at which the medication should be taken in terms of hours as an integer, with no other text."},
             {"role": "system", "content": instruction},
 
     ]
