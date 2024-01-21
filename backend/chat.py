@@ -19,9 +19,11 @@ perDay = 2
   #PASS JASONS RESULT INTO THIS
 instruction = "Tat Directions: Adults and children 4 years old over; chew 2 gummies 1 time per Take and with food, a few hours before or after other medications or natural health products day: taking"
 
-def jasper(age, woken, sleepen, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
+def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
     dateNow = datetime.utcnow().date()
     combinedDate = datetime.combine(dateNow, given_time).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
 
     intervalContext = [
         {"role": "system", "content": "You are an assistant who can only reply in numbers. You will be provided with instructions for medicine that I am to take. Return the interval at which the medication should be taken in terms of hours as an integer, with no other text."},
@@ -29,31 +31,31 @@ def jasper(age, woken, sleepen, given_time, perDay, instruction): #intake instru
 
     ]
 
-    pillContext = [
-        {"role": "system", "content": "You will be provided with instructions for medicine that I am to take. Return only the name of the medication in the instruction."},
-                {"role": "system", "content": instruction},
+    # pillContext = [
+    #     {"role": "system", "content": "You will be provided with instructions for medicine that I am to take. Return only the name of the medication in the instruction."},
+    #             {"role": "system", "content": instruction},
 
-    ]
+    # ]
 
-    wakeUpTime = [
-        {"role": "system", "content": "Format the given date in ISO-8601."},
-                {"role": "system", "content": combinedDate},
-    ]
+    # wakeUpTime = [
+    #     {"role": "system", "content": "Format the given date in ISO-8601."},
+    #             {"role": "system", "content": combinedDate},
+    # ]
 
     intervalResponse = client.chat.completions.create(
         messages = intervalContext,
         model="gpt-3.5-turbo",
     )
 
-    pillResponse = client.chat.completions.create(
-        messages = pillContext,
-        model="gpt-3.5-turbo",
-    )
+    # pillResponse = client.chat.completions.create(
+    #     messages = pillContext,
+    #     model="gpt-3.5-turbo",
+    # )
 
-    wakeUpResponse = client.chat.completions.create(
-        messages=wakeUpTime,
-        model="gpt-3.5-turbo",
-    )
+    # wakeUpResponse = client.chat.completions.create(
+    #     messages=wakeUpTime,
+    #     model="gpt-3.5-turbo",
+    # )
 
     #prompt confirmation before passing on to marcus
 
@@ -65,14 +67,16 @@ def jasper(age, woken, sleepen, given_time, perDay, instruction): #intake instru
         model="gpt-3.5-turbo",
     )
 
-    print(intervalResponse.choices[0].message.content)
-    print(pillResponse.choices[0].message.content)
-    print(wakeUpResponse.choices[0].message.content)
-    print(perDayResponse.choices[0].message.content)
+    # print(intervalResponse.choices[0].message.content)
+    # print(pillResponse.choices[0].message.content)
+    # print(wakeUpResponse.choices[0].message.content)
+    # print(perDayResponse.choices[0].message.content)
 
-    mInterval = intervalResponse.choices[0].message.content
-    mPill = pillResponse.choices[0].message.content
-    mWake = wakeUpResponse.choices[0].message.content
+    # mInterval = intervalResponse.choices[0].message.content
+    # mPill = pillResponse.choices[0].message.content
+    # mWake = wakeUpResponse.choices[0].message.content
     mPerDay = perDayResponse.choices[0].message.content
 
-jasper(age, woken, sleepen, given_time, perDay,instruction)
+    return mPerDay
+
+jasper(woken, sleepen, given_time, perDay,instruction)
