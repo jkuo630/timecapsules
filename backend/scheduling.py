@@ -3,7 +3,7 @@ from datetime import datetime, timezone, timedelta
 import os
 from twilio.rest import Client
 
-def schedulingMessage(message, startTimes):
+def marcus(message, startTimes):
 
     datesArray = parse_dates(startTimes)
     schedule_dates_array = add_days_to_dates(datesArray)
@@ -60,7 +60,7 @@ def add_days_to_dates(date_strings):
 
     return modified_dates
 
-schedulingMessage('hi', '2024-01-20T19:40:50Z')
+marcus('hi', '2024-01-20T19:40:50Z')
 
 def messageDemoInstant(message):
     message = client.messages.create(
