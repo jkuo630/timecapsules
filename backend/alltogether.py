@@ -3,7 +3,7 @@ import easyocr
 import matplotlib.pyplot as plt
 
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from openai import OpenAI
 from datetime import datetime, time
 
@@ -12,15 +12,15 @@ from datetime import datetime, timezone, timedelta
 import os
 from twilio.rest import Client
 
-# load_dotenv()
+load_dotenv()
 
 client = OpenAI(
-    api_key="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"
-    # api_key = os.environ['API_KEY']
+    # api_key="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"
+    api_key = os.environ['API_KEY']
 )
 
 # reads image (change to patch your path file)
-image_path = '/Users/marcuskam/Desktop/nw/stockImage3.webp' 
+image_path = '/Users/marcuskam/Desktop/nw/timecapsules/images/vitamin.png' 
 
 img = cv2.imread(image_path)
 
@@ -41,15 +41,15 @@ def extract_text(data):
     return complete_sentence
 
 instruction = extract_text(text)
+
+age = 23
 woken = 9
-sleepen = 20
 given_time = time(woken,0) #maybe woken.hour, woken.minutes( depends on input object format)
 perDay = 2
+pillName = "crack"
+personName = "Hohn"
 
-
-
-
-def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
+def jasper(age, woken, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
     dateNow = datetime.utcnow().date()
     combinedDate = datetime.combine(dateNow, given_time).strftime('%Y-%m-%dT%H:%M:%SZ')
 

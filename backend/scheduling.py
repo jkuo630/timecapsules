@@ -3,7 +3,7 @@ from datetime import datetime, timezone, timedelta
 import os
 from twilio.rest import Client
 
-def marcus(message, startTimes):
+def marcus(message, startTimes): # NEEDS PHONE NUMBER -----------
 
     datesArray = parse_dates(startTimes)
     schedule_dates_array = add_days_to_dates(datesArray)
@@ -15,7 +15,13 @@ def marcus(message, startTimes):
     auth_token = '0c02785b92ec7134cbc92942a97c951f'  # given auth token
     client = Client(account_sid, auth_token)
 
-    messageDemoInstant("Hello, your pill scheduling has been confirmed!")
+    # messageDemoInstant("Hello, your pill scheduling has been confirmed! Stay Healthy!") # FOR CONFIRMATION
+    message = client.messages.create(
+        from_='+16592228774',
+        body="Hello, your pill scheduling has been confirmed! Stay Healthy!", # replace with message
+        to='+16043568278'
+        )
+    print(message.sid)
 
     for dates in schedule_dates_array:
         print(dates)
@@ -26,7 +32,7 @@ def marcus(message, startTimes):
                 #  from_='+16592228774',
                 send_at=dates, # scheduled message
                 schedule_type='fixed',
-                to='+16043568278' # twilio given number +16592228774
+                to='+16043568278' # UPDATE TO USE PHONE NUMBER PARAMETER ---------
             )
         print(message.sid + ' printed new date')
 
@@ -46,7 +52,7 @@ def add_days_to_dates(date_strings):
     modified_dates = []
 
     # Loop through each date string
-    for i in range(1):
+    for i in range(2):
 
         for date_string in date_strings:
             
@@ -54,7 +60,7 @@ def add_days_to_dates(date_strings):
             current_date = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
 
             # Add 8 hours to the current time to account for utc
-            new_time = current_date + timedelta(hours=8)
+            new_time = current_date + timedelta(days=i)
 
             concatenated_string = new_time.strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -62,12 +68,12 @@ def add_days_to_dates(date_strings):
 
     return modified_dates
 
-marcus('hi', '2024-01-20T19:40:50Z')
+marcus('Reminder for Hohn, 23 years old: Please take your medicine, Crack. Chew 2 gummies once a day with food, ensuring a few hours gap before or after other medications or natural health products.', '2024-01-21T09:00:00Z') # NEED TO BE UPDATED TO TAKE IN PHONE NUMBER ----
 
 def messageDemoInstant(message):
     message = client.messages.create(
                                   from_='+16592228774',
-                                  body='message', # replace with message
+                                  body=message, # replace with message
                                   to='+16043568278'
                               )
     print(message.sid)
