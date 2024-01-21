@@ -1,5 +1,5 @@
 # timecapsules
-nwHacks 2024 Submission <br>
+nwhacks 2024 submission 
 
 Requirements: <br>
 Python3 <br>
