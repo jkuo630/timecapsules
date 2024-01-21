@@ -1,0 +1,6 @@
+.background-overlay {
+    position: fixed;
+    top: 250px;
+    left: 125px;
+    pointer-events: none;
+  }

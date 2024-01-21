@@ -2,10 +2,11 @@
     width: 420px;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(30px);
-    color: wheat;
-    border-radius: 10px;
+    backdrop-filter: blur(50px);
+    color: #222831;
+    border-radius: 20px;
     padding: 30px 40px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
 }
 
 .wrapper h1 {
@@ -25,16 +26,16 @@
     height: 100%;
     background: transparent;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: 2px solid rgba(61, 61, 61, 0.2);
     border-radius: 40px;
     font-size: 16px;
-    color: white;
+    color: #222831;
     padding: 5px 10px 5px 10px;
     max-width: 355px;
 }
 
 .input-box input::placeholder {
-    color: white;
+    color: #222831;
 }
 
 .input-box .icon {
@@ -48,13 +49,13 @@
 .wrapper button {
     width: 100%;
     height: 45px;
-    background: white;
+    background: #222831;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 16px;
-    color: black;
+    color: #F2F2F2;
     font-weight: 700;
 }

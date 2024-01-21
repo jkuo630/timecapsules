@@ -6,9 +6,11 @@ const PhoneNumberInput = () => {
   const handleInputChange = (e) => {
     // Remove non-numeric characters from the input
     const input = e.target.value.replace(/\D/g, '');
+    const maxLength = 10; // Set your desired maximum length for a phone number
+    const truncatedInput = input.slice(0, maxLength);
 
-    // Format the phone number as (___)-___-___
-    const formattedPhoneNumber = input.replace(/(\d{3})(\d{3})(\d{3})/, '($1)-$2-$3');
+    // Format the phone number as (XXX)-XXX-XXXX
+    const formattedPhoneNumber = truncatedInput.replace(/(\d{3})(\d{3})(\d{4})/, '($1)-$2-$3');
 
     setPhoneNumber(formattedPhoneNumber);
   };
@@ -16,7 +18,7 @@ const PhoneNumberInput = () => {
   return (
     <input
       type="text"
-      placeholder="Cell Number (___)-___-___"
+      placeholder="Cell Number (___)-___-____"
       value={phoneNumber}
       onChange={handleInputChange}
     />

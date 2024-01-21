@@ -13,7 +13,7 @@ const LoginForm = () => {
             <form action="">
                 <h1>Set up your Time Capsules</h1>
                 <div className="input-box">
-                <PhoneNumberInput className ='icon' />
+                <PhoneNumberInput/>
                 <FaPhone className = 'icon' />
                 </div>
                 <div className="input-box">

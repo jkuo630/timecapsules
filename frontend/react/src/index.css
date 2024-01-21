@@ -9,7 +9,11 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: black;
+  background-image: url('./Components/Assets/layered-waves-haikei.svg');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-position-y: 72%;
+  overflow: hidden;
 }
 
 code {
