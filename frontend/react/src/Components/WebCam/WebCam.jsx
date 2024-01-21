@@ -5,7 +5,7 @@ import "./WebCam.css";
 const WebCam = () => {
   return (
     <div>
-      <h1>Take a picture of the text!</h1>
+      <h1>Take a picture of the bottle!</h1>
       <Webcam />
     </div>
   );
