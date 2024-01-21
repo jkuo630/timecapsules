@@ -13,10 +13,10 @@ client = OpenAI(
 
 age = 23
 woken = 9
-sleepen = 20
 given_time = time(woken,0) #maybe woken.hour, woken.minutes( depends on input object format)
 perDay = 2
-name = "some name"
+pillName = "crack"
+personName = "Hohn"
   #PASS JASONS RESULT INTO THIS
 instruction = "Tat Directions: Adults and children 4 years old over; chew 2 gummies 1 time per Take and with food, a few hours before or after other medications or natural health products day: taking"
 
@@ -25,7 +25,7 @@ instructInstruction = [
     {"role": "user", "content": instruction}
 ]
 
-def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction from jason too instrad of defiing it
+def jasper(age, woken, given_time, perDay, instruction, pillName, personName): #intake instruction from jason too instrad of defiing it
     dateNow = datetime.utcnow().date()
     combinedDate = datetime.combine(dateNow, given_time).strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -43,7 +43,7 @@ def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction
     ]
 
     messageContext = [
-        {"role": "system", "content": "Imagine you are a reminder messaging app. generate a reminder message for Jasper to take his medicine based on the instructions: " + instruction +"be sure to specify the name and how to take the medication. Keep it condensed so there are no lines in between the reponse."},
+        {"role": "system", "content": "Imagine you are a reminder messaging app. generate a reminder message for" + personName + ", " + age + " years old, to take his medicine, " + pillName + ", based on the instructions: " + instruction +". Be sure to specify the name and how to take the medication. Keep it condensed so there are no lines in between the reponse."},
             {"role": "system", "content": newInstruction},
     ]
 
@@ -83,7 +83,7 @@ def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction
     #prompt confirmation before passing on to marcus
 
     interval = intervalResponse.choices[0].message.content
-    timesToTake = "Hypothetically, I wake up at" + str(woken) + "and sleep at " + str(sleepen) + " and need to take medication at intervals of " + interval + " hours. Give me " + str(perDay) + "times on " + combinedDate + ", seperated with a comma, during when i am awake to take medication in ISO-8601 format and nothing else."
+    timesToTake = "Hypothetically, I wake up at" + str(woken) + "and sleep at 9PM and need to take medication at intervals of " + interval + " hours. Give me " + str(perDay) + "times on " + combinedDate + ", seperated with a comma, during when i am awake to take medication in ISO-8601 format and nothing else."
 
     perDayResponse = client.chat.completions.create(
         messages=[{"role": "system", "content": timesToTake}],
@@ -103,4 +103,4 @@ def jasper(woken, sleepen, given_time, perDay, instruction): #intake instruction
 
     return mPerDay,messageToSend
 
-jasper(woken, sleepen, given_time, perDay,instruction)
+jasper(age, woken, given_time, perDay,instruction, personName, pillName)
