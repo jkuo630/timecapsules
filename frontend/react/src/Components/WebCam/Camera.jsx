@@ -27,14 +27,16 @@ const Camera = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Take a picture of the bottle!</h1>
+    <div className="photo-container">
+      <h1>Take a photo of the label</h1>
       <input
         type="text"
         value={inputValue}
         onChange={handleInputChange}
-        placeholder="Type something..."
+        placeholder="Enter name of medication"
+        className="inputStyle"
       />
+      <div  className="webcam">
       <Webcam
         ref={webcamRef}
         audio={false}
@@ -42,9 +44,12 @@ const Camera = () => {
         videoConstraints={videoConstraints}
         mirrored={false}
       />
+      </div>
+      <div className="photo-buttons">
       <button onClick={capturePhoto}>Capture</button>
       <button onClick={retakePhoto}>Retake</button>
       <button>Confirm</button>
+      </div>
       {capturedImage && <img src={capturedImage} alt="Captured Screenshot" />}
     </div>
   );

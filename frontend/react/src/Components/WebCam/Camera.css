@@ -1,5 +1,15 @@
+.photo-container {
+  background: transparent;
+  width: 800px;
+  border: 2px solid #ffffff33;
+  color: #222831;
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
 .container button {
-  width: 20%;
+  width: 50%;
   height: 45px;
   background: #222831;
   border: none;
@@ -10,7 +20,7 @@
   font-size: 16px;
   color: #f2f2f2;
   font-weight: 700;
-  margin: 10px 10px 10px 10px;
+  margin: 20px 50px 20px 50px;
 }
 
 .container img {
@@ -21,7 +31,7 @@
 }
 
 .container input {
-  width: 100%;
+  width: 60%;
   height: 100%;
   background: transparent;
   outline: none;
@@ -32,8 +42,29 @@
   padding: 5px 10px 5px 10px;
   max-width: 355px;
   margin-bottom: 10px;
+  margin-left: 205px;
+  text-align: center;
 }
 
 .container input::placeholder {
   color: #222831;
+}
+
+.container h1 {
+    font-size:36px;
+    text-align: center;
+}
+
+.photo-buttons {
+  text-align: center;
+    display: flex;
+    justify-content: space-between; /* Adjust the alignment as needed */
+}
+
+.photo-buttons button {
+  flex: 1; /* This will make all buttons take an equal portion of the available space */
+  max-width: 200px; /* Optional: Set a maximum width to prevent excessive stretching */
+}
+.webcam {
+  margin-left: 125px;
 }
