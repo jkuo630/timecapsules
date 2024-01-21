@@ -1,0 +1,9 @@
+.results-background-overlay {
+  position: fixed;
+    top: 165px;
+    right: 960px;
+    width: 45%;
+    height: 45%;
+    pointer-events: none;
+  }
+  

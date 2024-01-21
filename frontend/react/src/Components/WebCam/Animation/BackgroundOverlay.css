@@ -1,0 +1,10 @@
+.camera-background-overlay {
+    position: fixed;
+    top: 125px;
+    left: 760px;
+    width: 55%;
+    height: 55%;
+    pointer-events: none;
+    transform: scaleX(-1);
+  }
+  

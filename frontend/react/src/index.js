@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import LandingPage from "./Components/LandingPage/LandingPage"
+import Results from "./Components/Results/Results"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
       <Route path="/" element={<LandingPage />} />
       <Route path="/webcam" element={<WebCam />} />
       <Route path="/loginform" element={<App />} />
+      <Route path="/results" element={<Results />} />
     </Routes>
   </Router>
 );

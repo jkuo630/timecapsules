@@ -1,0 +1,9 @@
+.camera-mascot-overlay {
+    position: fixed;
+    top: 95px;
+    left: 680px;
+    width: 53%;
+    height: 53%;
+    pointer-events: none;
+    transform: scaleX(-1);
+  }

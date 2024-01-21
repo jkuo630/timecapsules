@@ -9,7 +9,7 @@
 }
 
 .container button {
-  width: 50%;
+  width: 100%;
   height: 45px;
   background: #222831;
   border: none;
@@ -59,6 +59,7 @@
   text-align: center;
     display: flex;
     justify-content: space-between; /* Adjust the alignment as needed */
+    max-width: 800px;
 }
 
 .photo-buttons button {
