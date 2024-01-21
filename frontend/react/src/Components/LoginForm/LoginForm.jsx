@@ -80,7 +80,7 @@ const LoginForm = () => {
           <div className="input-box">
             <input
               type="text"
-              placeholder="Enter 24-hour time (HH:mm)"
+              placeholder="When do you wake up? (HH:mm)"
               required
               value={formData.time}
               name="time"

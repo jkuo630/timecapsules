@@ -25,14 +25,26 @@ def members():
 def receive_data():
     data_from_frontend = request.json  # Assuming data is sent as JSON
     # Process the data and send a response back
+    # Process the data
     print(request.json)
     response_data = {'message': json.dumps(request.json)}
+    # inputJson = response_data
+    imageRead(data_from_frontend)
     return jsonify(response_data)
 
 
-
 # reads image (change to patch your path file)
-def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
+def imageRead(responseJson): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
+
+    age = responseJson['age']
+    woken = responseJson['time']
+    hours, minutes = map(int, woken.split(':'))
+    time_array = [hours, minutes]
+    given_time = time(time_array[0],time_array[1]) #maybe woken.hour, woken.minutes(depends on input object format)
+    pillName = "Vitamin C"
+    personName = responseJson['name']
+    phoneNumber = responseJson['phoneNumber']
+
     image_path = '/Users/marcuskam/Desktop/nw/timecapsules/images/vitamin.png' 
 
     img = cv2.imread(image_path)
@@ -55,14 +67,8 @@ def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
     complete_text = extract_text(text)
 
     print(complete_text + ' - TEXT EXTRACTED FROM IMAGE')
-
-    age = 23
-    woken = 9 
-    given_time = time(woken,0) #maybe woken.hour, woken.minutes(depends on input object format)
-    pillName = "crack"
-    personName = "Hohn"
     
-    jasper(age, woken, given_time, complete_text, pillName, personName) # + phone number
+    jasper(age, woken, given_time, complete_text, pillName, personName, phoneNumber) # + phone number
 
 # ----- MOVED THIS CODE INSIDE FUNCTIONS
 # client = OpenAI(
@@ -84,7 +90,7 @@ def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
 #     {"role": "user", "content": instruction}
 # ]
 
-def jasper(age, woken, given_time, instruction, pillName, personName): # + phone number
+def jasper(age, woken, given_time, instruction, pillName, personName, phoneNumber): # + phone number
 
     client = OpenAI(
     # This is the default and can be omitted
@@ -179,9 +185,9 @@ def jasper(age, woken, given_time, instruction, pillName, personName): # + phone
     print(messageData + ' - MESSAGE TO SEND')
     # print(newInstruction)
     # return mPerDay,messageToSend
-    marcus(messageData, timestampData) # + phone number
+    marcus(messageData, timestampData, phoneNumber) # + phone number
 
-def marcus(remindMessage, startTimes): # NEEDS PHONE NUMBER -----------
+def marcus(remindMessage, startTimes, phoneNumber): # NEEDS PHONE NUMBER -----------
 
     datesArray = parse_dates(startTimes)
     schedule_dates_array = add_days_to_dates(datesArray)
@@ -192,14 +198,6 @@ def marcus(remindMessage, startTimes): # NEEDS PHONE NUMBER -----------
     auth_token = '0c02785b92ec7134cbc92942a97c951f'  # given auth token
     client = Client(account_sid, auth_token)
 
-    # messageDemoInstant("Hello, your pill scheduling has been confirmed! Stay Healthy!") # FOR CONFIRMATION
-    message = client.messages.create(
-        from_='+16592228774',
-        body="Hey there, your daily pill reminders have been confirmed! Stay Healthy!", # replace with message
-        to='+16043568278' # + phone number
-        )
-    print(message.sid)
-
     for dates in schedule_dates_array:
         scheduledMessage = client.messages \
             .create(
@@ -208,9 +206,17 @@ def marcus(remindMessage, startTimes): # NEEDS PHONE NUMBER -----------
                 #  from_='+16592228774',
                 send_at=dates, # scheduled message
                 schedule_type='fixed',
-                to='+16043568278' # + phone number
+                to='+1' + phoneNumber # + phone number
             )
         print(scheduledMessage.body + ' printed new date')
+
+    # messageDemoInstant("Hello, your pill scheduling has been confirmed! Stay Healthy!") # FOR CONFIRMATION
+    message = client.messages.create(
+        from_='+16592228774',
+        body="Hey there, your daily pill reminders have been confirmed! Stay Healthy!", # replace with message
+        to='+1' + phoneNumber # + phone number
+        )
+    print(message.sid)
 
 def parse_dates(input_string):
     # Check if the input string is empty
@@ -228,7 +234,7 @@ def add_days_to_dates(date_strings):
     modified_dates = []
 
     # Loop through each date string
-    for i in range(1):
+    for i in range(2):
 
         for date_string in date_strings:
             
@@ -236,7 +242,7 @@ def add_days_to_dates(date_strings):
             current_date = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
 
             # Add 8 hours to the current time to account for utc
-            new_time = current_date + timedelta(days=i)
+            new_time = current_date + timedelta(days=i + 1, hours=8)
 
             concatenated_string = new_time.strftime('%Y-%m-%dT%H:%M:%SZ')
 
