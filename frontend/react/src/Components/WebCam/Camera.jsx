@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import "./Camera.css";
+import BackgroundOverlay from "./Animation/BackgroundOverlay";
+import Mascot from "./Animation/Mascot";
+import { Link } from "react-router-dom";
 
 const videoConstraints = {
   width: 540,
@@ -27,6 +30,9 @@ const Camera = () => {
   };
 
   return (
+    <div>
+          <BackgroundOverlay />
+      <Mascot />
     <div className="photo-container">
       <h1>Take a photo of the label</h1>
       <input
@@ -48,9 +54,14 @@ const Camera = () => {
       <div className="photo-buttons">
       <button onClick={capturePhoto}>Capture</button>
       <button onClick={retakePhoto}>Retake</button>
-      <button>Confirm</button>
+      
+        <button>
+          <Link style={{textDecoration:'none', color: 'inherit' }} to="/Results">Submit
+         </Link>
+         </button>
       </div>
       {capturedImage && <img src={capturedImage} alt="Captured Screenshot" />}
+    </div>
     </div>
   );
 };
