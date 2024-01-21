@@ -1,12 +1,11 @@
 import React from "react";
-import Webcam from "react-webcam";
 import "./WebCam.css";
+import Camera from "./Camera";
 
 const WebCam = () => {
   return (
-    <div>
-      <h1>Take a picture of the text!</h1>
-      <Webcam />
+    <div className="container">
+      <Camera />
     </div>
   );
 };
