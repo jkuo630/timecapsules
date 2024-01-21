@@ -3,7 +3,7 @@ import easyocr
 import matplotlib.pyplot as plt
 
 # reads image (change to patch your path file)
-image_path = '/Users/jasonkuo/Desktop/timecapsules/vitamin.png' 
+image_path = '/Users/marcuskam/Desktop/nw/stockImage3.webp' 
 
 img = cv2.imread(image_path)
 
