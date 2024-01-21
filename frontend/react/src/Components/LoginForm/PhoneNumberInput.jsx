@@ -18,7 +18,7 @@ const PhoneNumberInput = () => {
   return (
     <input
       type="text"
-      placeholder="Cell Number (___)-___-____"
+      placeholder="Cell Number"
       value={phoneNumber}
       onChange={handleInputChange}
     />

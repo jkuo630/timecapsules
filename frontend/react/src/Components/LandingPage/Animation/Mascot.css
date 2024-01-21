@@ -1,0 +1,9 @@
+.landing-mascot-overlay {
+    position: fixed;
+    top: 145px;
+    left: 700px;
+    width: 33%;
+    height: 33%;
+    pointer-events: none;
+    transform: scaleX(-1);
+  }
