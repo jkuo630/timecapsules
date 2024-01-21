@@ -20,9 +20,21 @@ const Camera = () => {
     setCapturedImage(null);
   };
 
+  const [inputValue, setInputValue] = useState("");
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <div className="container">
       <h1>Take a picture of the bottle!</h1>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Type something..."
+      />
       <Webcam
         ref={webcamRef}
         audio={false}
@@ -32,14 +44,8 @@ const Camera = () => {
       />
       <button onClick={capturePhoto}>Capture</button>
       <button onClick={retakePhoto}>Retake</button>
-      <button onClick={retakePhoto}>Confirm</button>
-      {capturedImage && (
-        <img
-          className="captured"
-          src={capturedImage}
-          alt="Captured Screenshot"
-        />
-      )}
+      <button>Confirm</button>
+      {capturedImage && <img src={capturedImage} alt="Captured Screenshot" />}
     </div>
   );
 };
