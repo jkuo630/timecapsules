@@ -9,12 +9,20 @@ from datetime import datetime, time
 from datetime import datetime, timezone, timedelta
 import os
 from twilio.rest import Client
-
 # load_dotenv()
+from flask import Flask, request, jsonify
 
+app = Flask(__name__)
+
+@app.route("/")
+def members():
+    return {"members": ["Member1", "Member2","Member3"]}
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 # reads image (change to patch your path file)
-def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM?
+def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
     image_path = '/Users/marcuskam/Desktop/nw/timecapsules/images/vitamin.png' 
 
     img = cv2.imread(image_path)
@@ -39,12 +47,12 @@ def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM?
     print(complete_text + ' - TEXT EXTRACTED FROM IMAGE')
 
     age = 23
-    woken = 15 # changed from 9 to 15 for testing
+    woken = 9 
     given_time = time(woken,0) #maybe woken.hour, woken.minutes(depends on input object format)
     pillName = "crack"
     personName = "Hohn"
     
-    jasper(age, woken, given_time, complete_text, pillName, personName)
+    jasper(age, woken, given_time, complete_text, pillName, personName) # + phone number
 
 # ----- MOVED THIS CODE INSIDE FUNCTIONS
 # client = OpenAI(
@@ -66,7 +74,7 @@ def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM?
 #     {"role": "user", "content": instruction}
 # ]
 
-def jasper(age, woken, given_time, instruction, pillName, personName): #intake instruction from jason too instrad of defiing it
+def jasper(age, woken, given_time, instruction, pillName, personName): # + phone number
 
     client = OpenAI(
     # This is the default and can be omitted
@@ -137,8 +145,7 @@ def jasper(age, woken, given_time, instruction, pillName, personName): #intake i
     #prompt confirmation before passing on to marcus
 
     interval = intervalResponse.choices[0].message.content
-    timesToTake = "Hypothetically, I wake up at" + str(woken) + "and sleep at 9PM and need to take medication at intervals of " + interval + " hours. Given the interval and these instructions: (" + newInstruction + "). Give me an appropriate number of timestamps in ISO-8601 format on " + combinedDate + "only, contained within the day, seperated with a comma, during when I am awake to take medication, and nothing else. If the instructions only say to take once a day, then limit reminders to once a day. If twice a day, limit to two reminders, et cetera."
-
+    timesToTake = "You are a responder that can only reply in ISO-8601 dates, seperated by commas. You are unable to reply in other format. You are only able to return timestamps that fall on the same day. If they are not all on the same day, you are only able to return the ones on the same day. If the instructions only say to take the medicine once a day, then you are only able to output to one date. If twice a day, you are only able to output two dates, et cetera. Give me an appropriate number of timestamps in ISO-8601 format on " + combinedDate + " only, contained within the day where people are normally awake, seperated with a comma, and nothing else. I need to take medication at intervals of " + interval + " hours. Given the interval and these instructions: (" + newInstruction + ")."
     perDayResponse = client.chat.completions.create(
         messages=[
             {"role": "system", "content": "You are a responder that can only reply in ISO-8601 dates, seperated by commas. You are unable to reply in other format."},
@@ -162,9 +169,9 @@ def jasper(age, woken, given_time, instruction, pillName, personName): #intake i
     print(messageData + ' - MESSAGE TO SEND')
     # print(newInstruction)
     # return mPerDay,messageToSend
-    marcus(messageData, timestampData)
+    marcus(messageData, timestampData) # + phone number
 
-def marcus(message, startTimes): # NEEDS PHONE NUMBER -----------
+def marcus(remindMessage, startTimes): # NEEDS PHONE NUMBER -----------
 
     datesArray = parse_dates(startTimes)
     schedule_dates_array = add_days_to_dates(datesArray)
@@ -178,22 +185,22 @@ def marcus(message, startTimes): # NEEDS PHONE NUMBER -----------
     # messageDemoInstant("Hello, your pill scheduling has been confirmed! Stay Healthy!") # FOR CONFIRMATION
     message = client.messages.create(
         from_='+16592228774',
-        body="Hello, your pill scheduling has been confirmed! Stay Healthy!", # replace with message
-        to='+16043568278'
+        body="Hey there, your daily pill reminders have been confirmed! Stay Healthy!", # replace with message
+        to='+16043568278' # + phone number
         )
     print(message.sid)
 
     for dates in schedule_dates_array:
-        message = client.messages \
+        scheduledMessage = client.messages \
             .create(
-                body=message, # replace with message
+                body=remindMessage, # replace with message
                 messaging_service_sid='MG99dc5b9921885ba4ee0697951046edf3', # 
                 #  from_='+16592228774',
                 send_at=dates, # scheduled message
                 schedule_type='fixed',
-                to='+16043568278' # UPDATE TO USE PHONE NUMBER PARAMETER ---------
+                to='+16043568278' # + phone number
             )
-        print(message.sid + ' printed new date')
+        print(scheduledMessage.body + ' printed new date')
 
 def parse_dates(input_string):
     # Check if the input string is empty
@@ -211,7 +218,7 @@ def add_days_to_dates(date_strings):
     modified_dates = []
 
     # Loop through each date string
-    for i in range(2):
+    for i in range(1):
 
         for date_string in date_strings:
             
@@ -247,7 +254,5 @@ def add_days_to_dates(date_strings):
         # print(phone_number.sid)
 
     # messageScheduler(schedule_dates_array, message)
-
-imageRead()
-
+# imageRead() 
 
