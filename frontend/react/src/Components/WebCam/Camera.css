@@ -1,0 +1,21 @@
+.container button {
+  width: 20%;
+  height: 45px;
+  background: #222831;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #f2f2f2;
+  font-weight: 700;
+  margin: 10px 10px 10px 10px;
+}
+
+.container img {
+  position: absolute;
+  top: 293px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
