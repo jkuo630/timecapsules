@@ -15,6 +15,8 @@ def marcus(message, startTimes):
     auth_token = '0c02785b92ec7134cbc92942a97c951f'  # given auth token
     client = Client(account_sid, auth_token)
 
+    messageDemoInstant("Hello, your pill scheduling has been confirmed!")
+
     for dates in schedule_dates_array:
         print(dates)
         message = client.messages \
@@ -65,7 +67,7 @@ marcus('hi', '2024-01-20T19:40:50Z')
 def messageDemoInstant(message):
     message = client.messages.create(
                                   from_='+16592228774',
-                                  body='Hi there', # replace with message
+                                  body='message', # replace with message
                                   to='+16043568278'
                               )
     print(message.sid)
