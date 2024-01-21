@@ -11,15 +11,25 @@ import os
 from twilio.rest import Client
 # load_dotenv()
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import json
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def members():
     return {"members": ["Member1", "Member2","Member3"]}
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route('/api/endpoint', methods=['POST'])
+def receive_data():
+    data_from_frontend = request.json  # Assuming data is sent as JSON
+    # Process the data and send a response back
+    print(request.json)
+    response_data = {'message': json.dumps(request.json)}
+    return jsonify(response_data)
+
+
 
 # reads image (change to patch your path file)
 def imageRead(): # WOULD TAKE IN INPUT VARIABLES FROM FORM? + phone number
@@ -256,3 +266,5 @@ def add_days_to_dates(date_strings):
     # messageScheduler(schedule_dates_array, message)
 # imageRead() 
 
+if __name__ == "__main__":
+    app.run(host="localhost", port=8000, debug=True)
