@@ -13,8 +13,7 @@ client = OpenAI(
 
 age = 23
 woken = 9
-given_time = time(woken,0) #maybe woken.hour, woken.minutes( depends on input object format)
-perDay = 2
+given_time = time(woken,0) #maybe woken.hour, woken.minutes(depends on input object format)
 pillName = "crack"
 personName = "Hohn"
   #PASS JASONS RESULT INTO THIS
@@ -25,7 +24,7 @@ instructInstruction = [
     {"role": "user", "content": instruction}
 ]
 
-def jasper(age, woken, given_time, perDay, instruction, pillName, personName): #intake instruction from jason too instrad of defiing it
+def jasper(age, woken, given_time, instruction, pillName, personName): #intake instruction from jason too instrad of defiing it
     dateNow = datetime.utcnow().date()
     combinedDate = datetime.combine(dateNow, given_time).strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -83,7 +82,7 @@ def jasper(age, woken, given_time, perDay, instruction, pillName, personName): #
     #prompt confirmation before passing on to marcus
 
     interval = intervalResponse.choices[0].message.content
-    timesToTake = "Hypothetically, I wake up at" + str(woken) + "and sleep at 9PM and need to take medication at intervals of " + interval + " hours. Given the interval and these instructions: (" + newInstruction + "). Give me an appropriate number of timestamps in ISO-8601 format on " + combinedDate + ", seperated with a comma, during when i am awake to take medication, and nothing else."
+    timesToTake = "Hypothetically, I wake up at" + str(woken) + "and sleep at 9PM and need to take medication at intervals of " + interval + " hours. Given the interval and these instructions: (" + newInstruction + "). Give me an appropriate number of timestamps in ISO-8601 format on " + combinedDate + "only, contained within the day, seperated with a comma, during when I am awake to take medication, and nothing else. If the instructions only say to take once a day, then limit reminders to once a day. If twice a day, limit to two reminders, et cetera."
 
     perDayResponse = client.chat.completions.create(
         messages=[
@@ -103,8 +102,10 @@ def jasper(age, woken, given_time, perDay, instruction, pillName, personName): #
     # mPerDay = perDayResponse.choices[0].message.content
     # messageToSend = messageResponse.choices[0].message.content
     print(perDayResponse.choices[0].message.content)
-    print(messageResponse.choices[0].message.content)
+    marcusData = messageResponse.choices[0].message.content
+    print(marcusData)
+    print(newInstruction)
 
     # return mPerDay,messageToSend
 
-jasper(age, woken, given_time, perDay,instruction, pillName, personName)
+jasper(age, woken, given_time,instruction, pillName, personName)
