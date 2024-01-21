@@ -25,8 +25,8 @@
 
 .container img {
   position: absolute;
-  top: 336px;
-  left: 50%;
+  top: 346px;
+  left: 396px;
   transform: translate(-50%, -50%);
 }
 
