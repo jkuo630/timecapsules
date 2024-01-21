@@ -3,10 +3,8 @@ import "./Mascot.css";
 
 const Mascot = () => {
   return (
-    <div className="mascot-overlay">
+    <div className="login-mascot-overlay">
       <svg
-        width="190%"
-        height="190%"
         viewBox="0 0 900 600"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

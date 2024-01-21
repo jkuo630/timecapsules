@@ -1,0 +1,8 @@
+.login-mascot-overlay {
+  position: fixed;
+    top: 150px;
+    left: 160px;
+    width: 33%;
+    height: 33%;
+    pointer-events: none;
+  }

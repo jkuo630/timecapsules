@@ -1,0 +1,36 @@
+.landing-container {
+    max-width: 450px; /* Set your desired maximum width for the container */
+    margin-right: 340px;
+    margin-bottom: 230px;
+  }
+  
+  .landing-body {
+    width: 100%; /* Set your desired width for the text container */
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: #222831;
+    margin: 1.5rem 0rem;
+  }
+
+
+.landing-header {
+font-size: clamp(2rem, 5vw, 4rem);
+  color: #EA8A8A;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  font-weight: bold;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.landing-container button {
+    width: 30%;
+    height: 45px;
+    background: #222831;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #F2F2F2;
+    font-weight: 700;
+}
+

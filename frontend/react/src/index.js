@@ -5,13 +5,15 @@ import WebCam from "./Components/WebCam/WebCam";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import LandingPage from "./Components/LandingPage/LandingPage"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/webcam" element={<WebCam />} />
+      <Route path="/loginform" element={<App />} />
     </Routes>
   </Router>
 );
