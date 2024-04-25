@@ -1,7 +1,8 @@
 # timecapsules
 nwhacks 2024 submission 
+Please check out https://devpost.com/software/timecapsules for a full rundown! 
 
-Requirements: <br>
+How to get started...Requirements: <br>
 Backend: <br>
 Python3 3.11.5 <br>
 easyocr == 1.6.2 (pip3 install easyocr) <br>
